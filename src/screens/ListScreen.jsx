@@ -1,4 +1,3 @@
-// src/screens/ListScreen.jsx
 import React, {useState, useEffect} from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
@@ -62,31 +61,35 @@ const ListScreen = () => {
         sortPosts(filteredPosts, sortBy, sortByAsc);
     };
 
-    return (<View style={
-        styles.container
-    }>
-        <SearchAndFilter onSearch={handleSearch}
-            onSortByTitle={handleSortByTitle}
-            onSortByBody={handleSortByBody}
-            onToggleOrder={handleToggleOrder}
-            searchText={searchText}/>
-        <FlatList data={sortedPosts}
-            keyExtractor={
-                (item) => item.id.toString()
-            }
-            renderItem={
-                ({item}) => (<ReusableView onPress={
-                        () => navigateToDetailScreen(item.userId)
-                    }
-                    title={
-                        item.title
-                    }
-                    description={
-                        item.body
-                    }
-                    additionalInfo={`Nah`}/>)
-            }/>
-    </View>);
+    return (
+        <View style={
+            styles.container
+        }>
+            <SearchAndFilter onSearch={handleSearch}
+                onSortByTitle={handleSortByTitle}
+                onSortByBody={handleSortByBody}
+                onToggleOrder={handleToggleOrder}
+                searchText={searchText}/>
+            <FlatList data={sortedPosts}
+                keyExtractor={
+                    (item) => item.id.toString()
+                }
+                renderItem={
+                    ({item}) => (
+                        <ReusableView onPress={
+                                () => navigateToDetailScreen(item.userId)
+                            }
+                            title={
+                                item.title
+                            }
+                            description={
+                                item.body
+                            }
+                            additionalInfo={`Additional info: nah`}/>
+                    )
+                }/>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({

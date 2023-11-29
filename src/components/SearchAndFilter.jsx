@@ -1,4 +1,3 @@
-// src/components/SearchAndFilter.jsx
 import React, {useState} from 'react';
 import {
     View,
@@ -7,6 +6,7 @@ import {
     Text,
     StyleSheet
 } from 'react-native';
+import {FontAwesome} from '@expo/vector-icons';
 
 const SearchAndFilter = ({
     onSearch,
@@ -17,41 +17,43 @@ const SearchAndFilter = ({
 }) => {
     const [searchInput, setSearchInput] = useState(searchText);
 
-    const handleSearch = () => {
-        onSearch(searchInput);
+    const handleSearch = (text) => {
+        setSearchInput(text);
+        onSearch(text);
     };
 
-    return (<View style={
-        styles.container
-    }>
-        <TextInput style={
-                styles.input
-            }
-            placeholder="Search"
-            value={searchInput}
-            onChangeText={
-                (text) => setSearchInput(text)
-            }
-            onSubmitEditing={handleSearch}/>
-        <TouchableOpacity style={
-                styles.button
-            }
-            onPress={onSortByTitle}>
-            <Text>Sort by Title</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={
-                styles.button
-            }
-            onPress={onSortByBody}>
-            <Text>Sort by Body</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={
-                styles.button
-            }
-            onPress={onToggleOrder}>
-            <Text>Toggle Order</Text>
-        </TouchableOpacity>
-    </View>);
+    return (
+        <View style={
+            styles.container
+        }>
+            <TextInput style={
+                    styles.input
+                }
+                placeholder="Search"
+                value={searchInput}
+                onChangeText={handleSearch}/>
+            <TouchableOpacity style={
+                    styles.button
+                }
+                onPress={onToggleOrder}>
+                <FontAwesome name="sort"
+                    size={20}
+                    color="#333"/>
+            </TouchableOpacity>
+            <TouchableOpacity style={
+                    styles.button
+                }
+                onPress={onSortByTitle}>
+                <Text>Sort by Title</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={
+                    styles.button
+                }
+                onPress={onSortByBody}>
+                <Text>Sort by Body</Text>
+            </TouchableOpacity>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({

@@ -1,4 +1,3 @@
-// src/screens/DetailScreen.jsx
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 
@@ -23,34 +22,39 @@ const DetailScreen = ({route}) => {
         fetchUserData();
     }, [route.params]);
 
-    return (<ScrollView style={
-        styles.container
-    }> {
-        userData && (<ReusableView onPress={
-                () => console.log('DetailView Pressed')
-            }
-            title={
-                `${
-                    userData.name
-                } ${
-                    userData.username
-                }`
-            }
-            description={
-                `Email: ${
-                    userData.email
-                }\nUsername: ${
-                    userData.username
-                }\nPhone: ${
-                    userData.phone
-                }\nWebsite: ${
-                    userData.website
-                }\nCompany: ${
-                    userData.company.name
-                }`
-            }
-            additionalInfo={`Some additional info for DetailScreen`}/>)
-    } </ScrollView>);
+    return (
+        <ScrollView style={
+            styles.container
+        }>
+            {
+            userData && (
+                <ReusableView onPress={
+                        () => console.log('DetailView Pressed')
+                    }
+                    title={
+                        `${
+                            userData.name
+                        } ${
+                            userData.username
+                        }`
+                    }
+                    description={
+                        `Email: ${
+                            userData.email
+                        }\nUsername: ${
+                            userData.username
+                        }\nPhone: ${
+                            userData.phone
+                        }\nWebsite: ${
+                            userData.website
+                        }\nCompany: ${
+                            userData.company.name
+                        }`
+                    }
+                    additionalInfo={`Additional info: nope`}/>
+            )
+        } </ScrollView>
+    );
 };
 
 const styles = StyleSheet.create({

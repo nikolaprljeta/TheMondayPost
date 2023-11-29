@@ -1,70 +1,47 @@
-// src/components/ReusableView.jsx
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 
-const ReusableView = ({
-    onPress,
-    ...params
-}) => {
-    return (<TouchableOpacity onPress={onPress}
-        style={
-            styles.container
-    }>
-        <View style={
-            styles.postBackground
-        }> {
-            params.title && <Text style={
-                styles.postTitle
-            }> {
-                params.title
-            }</Text>
-        }
-            {
-            params.description && <Text style={
-                styles.postText
-            }> {
-                params.description
-            }</Text>
-        }
-            {
-            params.additionalInfo && <Text style={
+const ReusableView = ({onPress, title, description, additionalInfo}) => {
+    return (
+        <TouchableOpacity onPress={onPress}
+            style={
+                styles.container
+        }>
+            <Text style={
+                styles.title
+            }>
+                {title}</Text>
+            <Text style={
+                styles.description
+            }>
+                {description}</Text>
+            <Text style={
                 styles.additionalInfo
-            }> {
-                params.additionalInfo
-            }</Text>
-        } </View>
-    </TouchableOpacity>);
+            }>
+                {additionalInfo}</Text>
+        </TouchableOpacity>
+    );
 };
 
 const styles = StyleSheet.create({
     container: {
-        marginVertical: 8
-    },
-    postBackground: {
-        backgroundColor: 'white',
-        padding: 16,
+        borderWidth: 1,
+        borderColor: '#ccc',
         borderRadius: 8,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5
+        padding: 16,
+        marginBottom: 16
     },
-    postTitle: {
+    title: {
         fontSize: 18,
         fontWeight: 'bold',
-        marginBottom: 8,
-        color: 'black'
+        marginBottom: 8
     },
-    postText: {
-        color: 'black'
+    description: {
+        textAlign: 'left',
+        marginBottom: 8
     },
     additionalInfo: {
-        color: 'black',
-        fontStyle: 'italic'
+        color: '#666'
     }
 });
 
